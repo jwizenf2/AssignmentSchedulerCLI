@@ -19,3 +19,50 @@ For students, properly planning out a working strategy to complete their school 
 - Assign Priority Levels: The system assigns priority levels to each assignment based on factors such as due date, importance, complexity, and time required.
 - Display Schedule: Generates a schedule displaying assignments in order of priority.
 - Customization Options: Users can customize their priority schedule by adjusting priority levels, adding new assignments, removing completed tasks, and rearranging the schedule as needed.
+
+## Classes
+
+### Assignment Class
+
+- **Instance Variables**:
+  - `Course course`: Reference to an instance of Course Class.
+  - `String name`: Name of the assignment.
+  - `String description`: Description of the assignment.
+  - `String startDate`: Date format of "dd-MM-yyyy HH:mm:ss".
+  - `String dueDate`: Date format of "dd-MM-yyyy HH:mm:ss".
+  - `int maxPoints`: Total possible assignment points.
+  - `boolean isCompleted`: Did you finish the assignment yet.
+  - `int estimatedTime`: How long will the assignment take to finish.
+  - `int priority`: Algorithm gives score based off of various factors including dueDate, maxPoints, estimatedTime, Course.priority, Course.grade.
+  - `AssignmentType type`: One of enum AssignmentType.
+
+#### Enum: AssignmentType
+
+- `Homework`
+- `Test`
+- `Quiz`
+- `Project`
+
+### Course Class
+
+- **Instance Variables**:
+  - `String name`: Name of the course.
+  - `String subject`: Subject of the course.
+  - `int grade`: Current grade in the course.
+  - `int priority`: User assigned priority to the course, lower value means higher priority.
+
+### ScheduleManager Class (Document-Store-esque)
+
+- **Instance Variables**:
+  - `Assignment[] assignments`: All assignments.
+  - `Course[] courses`: All courses.
+  - `PriorityQueue<Assignment> assignmentPriorityHeap`: Track priority of assignments.
+  - `LinkedList<Assignment> assignmentChronology`: A list of all assignments sorted in order of assignment dueDate.
+  - `HashMap<String, Assignment> assignmentMap`: Easy access to assignments by name.
+
+## Data Structures
+
+- **MaxHeap**: Maintains constant access to assignments with the highest priority as the upcoming assignment in the scheduler.
+- **LinkedList**: Holds a chronological due date view of all assignments.
+- **HashMap**: A direct access to assignments by name.
+- **Arrays**: A storage to easily see all courses & assignments.
